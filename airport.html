@@ -1,45 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Airport Systems</title>
-<link rel="stylesheet" href="style.css">
+<title>Airport Airside Trainer</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#050914,#0a1b2f);
+color:white;
+}
+
+header{
+text-align:center;
+padding:20px;
+}
+
+h1{color:#00d4ff;}
+
+.container{
+position:relative;
+max-width:1000px;
+margin:auto;
+}
+
+.map{
+width:100%;
+border-radius:10px;
+}
+
+/* HOTSPOTS */
+.hotspot{
+position:absolute;
+width:14px;
+height:14px;
+background:#00d4ff;
+border-radius:50%;
+cursor:pointer;
+box-shadow:0 0 10px #00d4ff;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.3);}
+100%{transform:scale(1);}
+}
+
+/* INFO BOX */
+.info{
+position:absolute;
+background:rgba(0,0,0,0.85);
+padding:10px;
+border-radius:8px;
+display:none;
+max-width:260px;
+font-size:13px;
+border:1px solid #00d4ff;
+}
+
+/* PANEL */
+.panel{
+max-width:1000px;
+margin:15px auto;
+padding:15px;
+background:rgba(0,212,255,0.08);
+border:1px solid rgba(0,212,255,0.3);
+border-radius:10px;
+}
+
+/* WATERMARK */
+.watermark{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) rotate(-25deg);
+font-size:40px;
+opacity:0.05;
+pointer-events:none;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:20px;
+opacity:0.7;
+}
+</style>
 </head>
 
 <body>
 
-<h1>🏢 Airport Full Systems</h1>
+<div class="watermark">Mr. Fawzi Milibari</div>
 
-<div class="grid">
+<header>
+<h1>Airport Airside Interactive Trainer</h1>
+<p>Runway • Taxiway • Apron • Safety Systems</p>
+</header>
 
-<div class="card">Runway</div>
-<div class="card">Runway Threshold</div>
-<div class="card">Touchdown Zone</div>
-<div class="card">Centerline</div>
-<div class="card">Taxiway</div>
-<div class="card">Holding Point</div>
-<div class="card">Rapid Exit Taxiway</div>
+<div class="panel">
+<h3 style="color:#00d4ff;">Airside Operations Training Module</h3>
+<p>Click on each area to learn about airport airside components based on ICAO operational standards.</p>
+</div>
 
-<div class="card">Apron / Ramp</div>
-<div class="card">Parking Stand</div>
-<div class="card">Gate Position</div>
-<div class="card">Pushback Area</div>
+<div class="container">
 
-<div class="card">Passenger Terminal</div>
-<div class="card">Check-in Area</div>
-<div class="card">Security Screening</div>
-<div class="card">Boarding Gates</div>
-<div class="card">Jet Bridge</div>
+<!-- MAP IMAGE (simple schematic placeholder) -->
+<img src="https://i.imgur.com/1Q9Z1Zf.jpg" class="map">
 
-<div class="card">ATC Tower</div>
-<div class="card">Hangar</div>
-<div class="card">Fuel Farm</div>
-<div class="card">Fire Station</div>
+<!-- RUNWAY -->
+<div class="hotspot" style="top:60%;left:20%;" onclick="show(event,'Runway System','Aircraft takeoff and landing surface including threshold, centerline, touchdown zone, and lighting systems.')"></div>
+
+<!-- TAXIWAY -->
+<div class="hotspot" style="top:50%;left:40%;" onclick="show(event,'Taxiway System','Ground movement path connecting runway and apron. Includes centerline, holding points, and intersections.')"></div>
+
+<!-- APRON -->
+<div class="hotspot" style="top:40%;left:55%;" onclick="show(event,'Apron (Ramp)','Aircraft parking, boarding, refueling, and ground handling operations area.')"></div>
+
+<!-- HOLDING POINT -->
+<div class="hotspot" style="top:55%;left:30%;" onclick="show(event,'Holding Point','Safety position where aircraft stop before entering runway.')"></div>
+
+<!-- RUNWAY EDGE LIGHTS -->
+<div class="hotspot" style="top:62%;left:25%;" onclick="show(event,'Runway Lighting','Visual guidance system including edge lights, centerline lights, and approach lighting.')"></div>
+
+<!-- ATC -->
+<div class="hotspot" style="top:15%;left:50%;" onclick="show(event,'Air Traffic Control Tower','Controls all aircraft movements on ground and airside operations.')"></div>
+
+<!-- FUEL FARM -->
+<div class="hotspot" style="top:35%;left:20%;" onclick="show(event,'Fuel Farm','Storage and distribution facility for aviation fuel.')"></div>
+
+<!-- HANGAR -->
+<div class="hotspot" style="top:20%;left:25%;" onclick="show(event,'Hangar','Aircraft maintenance and storage facility.')"></div>
+
+<!-- INFO BOX -->
+<div id="info" class="info"></div>
 
 </div>
 
-<br>
-<button onclick="location.href='training.html'">⬅ Back</button>
+<footer>
+Prepared by Mr. Fawzi Milibari
+</footer>
+
+<script>
+
+function show(e,title,desc){
+let box=document.getElementById("info");
+
+box.style.display="block";
+box.style.left=e.pageX+"px";
+box.style.top=e.pageY+"px";
+
+box.innerHTML=
+"<b>"+title+"</b><br>"+desc+
+"<br><button onclick='speak(\""+title+"\")'>🔊 Listen</button>";
+}
+
+function speak(text){
+let msg=new SpeechSynthesisUtterance(text);
+msg.lang="en-US";
+msg.rate=0.9;
+speechSynthesis.speak(msg);
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.classList.contains("hotspot")){
+document.getElementById("info").style.display="none";
+}
+});
+
+</script>
 
 </body>
 </html>
