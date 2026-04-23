@@ -1,50 +1,217 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Aircraft Systems</title>
-<link rel="stylesheet" href="style.css">
+<title>Aircraft Anatomy Trainer</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#050914,#0a1a2f);
+color:white;
+}
+
+header{
+text-align:center;
+padding:20px;
+}
+
+h1{
+color:#00d4ff;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,212,255,0.3);
+padding:15px;
+border-radius:12px;
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:scale(1.03);
+box-shadow:0 0 15px #00d4ff;
+}
+
+.title{
+color:#00d4ff;
+font-weight:bold;
+font-size:18px;
+}
+
+.desc{
+font-size:14px;
+margin-top:5px;
+opacity:0.8;
+}
+
+button{
+margin-top:10px;
+padding:6px 10px;
+background:#00d4ff;
+border:none;
+cursor:pointer;
+border-radius:6px;
+}
+
+.section-title{
+padding:10px 20px;
+color:#00d4ff;
+font-size:20px;
+margin-top:20px;
+}
+
+.watermark{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) rotate(-25deg);
+font-size:40px;
+opacity:0.05;
+pointer-events:none;
+}
+
+footer{
+text-align:center;
+padding:20px;
+opacity:0.7;
+}
+</style>
+
 </head>
 
 <body>
 
-<h1>✈️ Aircraft Full Systems</h1>
+<div class="watermark">Mr. Fawzi Milibari</div>
 
-<div class="grid">
+<header>
+<h1>Aircraft Full Anatomy Trainer</h1>
+<p>Interactive Aviation Training System</p>
+</header>
 
-<div class="card">Fuselage</div>
-<div class="card">Cockpit</div>
-<div class="card">Cabin</div>
-<div class="card">Cargo Compartment</div>
+<div class="section-title">Fuselage System</div>
+<div class="container" id="fuselage"></div>
 
-<div class="card">Wings</div>
-<div class="card">Ailerons</div>
-<div class="card">Flaps</div>
-<div class="card">Slats</div>
-<div class="card">Winglets</div>
+<div class="section-title">Wing System</div>
+<div class="container" id="wings"></div>
 
-<div class="card">Vertical Stabilizer</div>
-<div class="card">Horizontal Stabilizer</div>
-<div class="card">Rudder</div>
-<div class="card">Elevator</div>
+<div class="section-title">Tail System</div>
+<div class="container" id="tail"></div>
 
-<div class="card">Turbofan Engine</div>
-<div class="card">Compressor</div>
-<div class="card">Turbine</div>
-<div class="card">Combustion Chamber</div>
-<div class="card">Thrust Reverser</div>
+<div class="section-title">Engines System</div>
+<div class="container" id="engines"></div>
 
-<div class="card">Landing Gear</div>
-<div class="card">Brakes</div>
-<div class="card">Hydraulic System</div>
-<div class="card">Electrical System</div>
-<div class="card">Fuel System</div>
-<div class="card">Avionics System</div>
+<div class="section-title">Landing Gear</div>
+<div class="container" id="landing"></div>
 
-</div>
+<div class="section-title">Flight Controls</div>
+<div class="container" id="controls"></div>
 
-<br>
-<button onclick="location.href='training.html'">⬅ Back</button>
+<div class="section-title">Avionics & Systems</div>
+<div class="container" id="avionics"></div>
+
+<footer>
+Prepared by Mr. Fawzi Milibari
+</footer>
+
+<script>
+
+function speak(text){
+let msg=new SpeechSynthesisUtterance(text);
+msg.lang="en-US";
+msg.rate=0.9;
+speechSynthesis.speak(msg);
+}
+
+function add(data,id){
+let c=document.getElementById(id);
+
+data.forEach(i=>{
+let div=document.createElement("div");
+div.className="card";
+div.innerHTML=`
+<div class="title">${i[0]}</div>
+<div class="desc">${i[1]}</div>
+<button onclick="speak('${i[0]}')">🔊 Listen</button>
+`;
+c.appendChild(div);
+});
+}
+
+// Fuselage
+add([
+["Fuselage","Main body of aircraft"],
+["Cockpit","Pilot control area"],
+["Cabin","Passenger area"],
+["Cargo Compartment","Storage area"],
+["Doors","Entry & exit points"]
+],"fuselage");
+
+// Wings
+add([
+["Wings","Generate lift"],
+["Ailerons","Roll control"],
+["Flaps","Increase lift during takeoff/landing"],
+["Slats","Improve low-speed lift"],
+["Winglets","Reduce drag"]
+],"wings");
+
+// Tail
+add([
+["Vertical Stabilizer","Yaw stability"],
+["Horizontal Stabilizer","Pitch stability"],
+["Rudder","Yaw control"],
+["Elevator","Pitch control"]
+],"tail");
+
+// Engines
+add([
+["Turbofan Engine","Main thrust system"],
+["Fan Section","Air intake"],
+["Compressor","Compress air"],
+["Combustion Chamber","Fuel burning"],
+["Turbine","Energy extraction"],
+["Thrust Reverser","Landing brake assist"]
+],"engines");
+
+// Landing Gear
+add([
+["Nose Gear","Front landing support"],
+["Main Gear","Primary landing support"],
+["Wheels","Ground movement"],
+["Brakes","Stopping system"],
+["Steering","Ground direction control"]
+],"landing");
+
+// Controls
+add([
+["Ailerons","Roll control"],
+["Elevator","Pitch control"],
+["Rudder","Yaw control"],
+["Flaps","Lift control"],
+["Spoilers","Reduce lift / slow down"]
+],"controls");
+
+// Avionics
+add([
+["Autopilot","Automatic flight control"],
+["FMS","Flight management system"],
+["GPS Navigation","Position tracking"],
+["Radar","Weather detection"],
+["Transponder","Aircraft identification"],
+["Communication Radio","ATC communication"]
+],"avionics");
+
+</script>
 
 </body>
 </html>
