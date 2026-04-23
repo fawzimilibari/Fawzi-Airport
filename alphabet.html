@@ -1,59 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Alphabet</title>
-<link rel="stylesheet" href="style.css">
+<title>Aviation Training Course</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin:0;
+    background:#0a0f1c;
+    color:white;
+}
+
+header {
+    text-align:center;
+    padding:20px;
+}
+
+h1 { color:#00d4ff; }
+
+.section {
+    padding:20px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:10px;
+}
+
+.card {
+    background:#111a2e;
+    padding:15px;
+    text-align:center;
+    border-radius:10px;
+    border:1px solid #00d4ff33;
+    transition:0.3s;
+}
+
+.card:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 10px #00d4ff;
+}
+
+.big {
+    font-size:26px;
+    font-weight:bold;
+    color:#00d4ff;
+}
+
+button {
+    margin-top:8px;
+    padding:5px;
+    border:none;
+    background:#00d4ff;
+    cursor:pointer;
+}
+
+.watermark {
+    position:fixed;
+    opacity:0.06;
+    font-size:40px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-30deg);
+    pointer-events:none;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Aviation Alphabet & Numbers</h1>
+<div class="watermark">Mr. Fawzi Milibari</div>
 
-<div class="grid">
+<header>
+<h1>Aviation Training Course</h1>
+<p>ICAO & IATA Standard Learning Platform</p>
+</header>
 
-<div class="card">A - Alpha</div>
-<div class="card">B - Bravo</div>
-<div class="card">C - Charlie</div>
-<div class="card">D - Delta</div>
-<div class="card">E - Echo</div>
-<div class="card">F - Foxtrot</div>
-<div class="card">G - Golf</div>
-<div class="card">H - Hotel</div>
-<div class="card">I - India</div>
-<div class="card">J - Juliett</div>
-<div class="card">K - Kilo</div>
-<div class="card">L - Lima</div>
-<div class="card">M - Mike</div>
-<div class="card">N - November</div>
-<div class="card">O - Oscar</div>
-<div class="card">P - Papa</div>
-<div class="card">Q - Quebec</div>
-<div class="card">R - Romeo</div>
-<div class="card">S - Sierra</div>
-<div class="card">T - Tango</div>
-<div class="card">U - Uniform</div>
-<div class="card">V - Victor</div>
-<div class="card">W - Whiskey</div>
-<div class="card">X - X-ray</div>
-<div class="card">Y - Yankee</div>
-<div class="card">Z - Zulu</div>
-
-<div class="card">0 - Zero</div>
-<div class="card">1 - One</div>
-<div class="card">2 - Two</div>
-<div class="card">3 - Three</div>
-<div class="card">4 - Four</div>
-<div class="card">5 - Five</div>
-<div class="card">6 - Six</div>
-<div class="card">7 - Seven</div>
-<div class="card">8 - Eight</div>
-<div class="card">9 - Nine</div>
-
+<div class="section">
+<h2>Module 1: Phonetic Alphabet</h2>
+<div class="grid" id="letters"></div>
 </div>
 
-<br>
-<button onclick="location.href='training.html'">⬅ Back</button>
+<div class="section">
+<h2>Module 2: Aviation Numbers</h2>
+<div class="grid" id="numbers"></div>
+</div>
+
+<footer style="text-align:center;padding:20px;">
+Prepared by Mr. Fawzi Milibari
+</footer>
+
+<script>
+
+const letters = [
+["A","Alpha"],["B","Bravo"],["C","Charlie"],["D","Delta"],
+["E","Echo"],["F","Foxtrot"],["G","Golf"],["H","Hotel"],
+["I","India"],["J","Juliett"],["K","Kilo"],["L","Lima"],
+["M","Mike"],["N","November"],["O","Oscar"],["P","Papa"],
+["Q","Quebec"],["R","Romeo"],["S","Sierra"],["T","Tango"],
+["U","Uniform"],["V","Victor"],["W","Whiskey"],["X","X-ray"],
+["Y","Yankee"],["Z","Zulu"]
+];
+
+const numbers = [
+["0","Zero"],["1","One"],["2","Two"],["3","Three"],
+["4","Four"],["5","Five"],["6","Six"],["7","Seven"],
+["8","Eight"],["9","Nine"]
+];
+
+function speak(text){
+    let msg = new SpeechSynthesisUtterance(text);
+    msg.lang="en-US";
+    speechSynthesis.speak(msg);
+}
+
+function load(data, id){
+    let container=document.getElementById(id);
+
+    data.forEach(i=>{
+        let div=document.createElement("div");
+        div.className="card";
+        div.innerHTML=`
+            <div class="big">${i[0]}</div>
+            <div>${i[1]}</div>
+            <button onclick="speak('${i[1]}')">🔊</button>
+        `;
+        container.appendChild(div);
+    });
+}
+
+load(letters,"letters");
+load(numbers,"numbers");
+
+</script>
 
 </body>
 </html>
