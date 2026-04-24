@@ -18,38 +18,27 @@ color:#00d4ff;
 padding:20px;
 }
 
-/* CONTAINER */
 .container{
 position:relative;
-max-width:1000px;
+max-width:1200px;
 margin:auto;
 }
 
-/* IMAGE */
 .container img{
 width:100%;
 border-radius:10px;
 }
 
-/* HOTSPOTS */
 .hotspot{
 position:absolute;
-width:14px;
-height:14px;
+width:12px;
+height:12px;
 background:#00d4ff;
 border-radius:50%;
 cursor:pointer;
-box-shadow:0 0 10px #00d4ff;
-animation:pulse 1.5s infinite;
+box-shadow:0 0 8px #00d4ff;
 }
 
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.3);}
-100%{transform:scale(1);}
-}
-
-/* INFO BOX */
 .info{
 position:absolute;
 background:rgba(0,0,0,0.9);
@@ -61,7 +50,6 @@ border:1px solid #00d4ff;
 font-size:13px;
 }
 
-/* BUTTON */
 button{
 margin:10px;
 padding:10px 15px;
@@ -71,7 +59,6 @@ cursor:pointer;
 border-radius:6px;
 }
 
-/* WATERMARK */
 .watermark{
 position:fixed;
 top:50%;
@@ -92,42 +79,68 @@ pointer-events:none;
 
 <div class="container">
 
-<!-- AIRCRAFT IMAGE -->
 <img src="aircraft.png">
 
-<!-- HOTSPOTS -->
+<!-- NOSE -->
+<div class="hotspot" style="top:55%; left:8%;" onclick="show(event,'Nose','Front part of aircraft')"></div>
 
-<div class="hotspot" style="top:45%;left:78%;" onclick="show(event,'Cockpit','Pilot control area of the aircraft')"></div>
+<!-- COCKPIT -->
+<div class="hotspot" style="top:50%; left:15%;" onclick="show(event,'Cockpit','Pilot control area')"></div>
 
-<div class="hotspot" style="top:55%;left:65%;" onclick="show(event,'Fuselage','Main body of the aircraft')"></div>
+<!-- FUSELAGE -->
+<div class="hotspot" style="top:55%; left:40%;" onclick="show(event,'Fuselage','Main body of aircraft')"></div>
 
-<div class="hotspot" style="top:50%;left:50%;" onclick="show(event,'Wing','Generates lift to keep the aircraft flying')"></div>
+<!-- WING -->
+<div class="hotspot" style="top:50%; left:55%;" onclick="show(event,'Wing','Generates lift')"></div>
 
-<div class="hotspot" style="top:60%;left:48%;" onclick="show(event,'Engine','Provides thrust for aircraft movement')"></div>
+<!-- ENGINE -->
+<div class="hotspot" style="top:65%; left:55%;" onclick="show(event,'Engine','Provides thrust')"></div>
 
-<div class="hotspot" style="top:45%;left:20%;" onclick="show(event,'Tail','Provides stability and control')"></div>
+<!-- FAN -->
+<div class="hotspot" style="top:67%; left:50%;" onclick="show(event,'Fan','Engine intake fan')"></div>
 
-<div class="hotspot" style="top:40%;left:25%;" onclick="show(event,'Vertical Stabilizer','Controls yaw movement')"></div>
+<!-- COMPRESSOR -->
+<div class="hotspot" style="top:67%; left:54%;" onclick="show(event,'Compressor','Compresses air')"></div>
 
-<div class="hotspot" style="top:50%;left:25%;" onclick="show(event,'Horizontal Stabilizer','Controls pitch stability')"></div>
+<!-- COMBUSTION -->
+<div class="hotspot" style="top:67%; left:58%;" onclick="show(event,'Combustion Chamber','Fuel combustion area')"></div>
 
-<div class="hotspot" style="top:52%;left:35%;" onclick="show(event,'Elevator','Controls aircraft pitch')"></div>
+<!-- TURBINE -->
+<div class="hotspot" style="top:67%; left:62%;" onclick="show(event,'Turbine','Drives engine rotation')"></div>
 
-<div class="hotspot" style="top:48%;left:35%;" onclick="show(event,'Rudder','Controls yaw direction')"></div>
+<!-- LANDING GEAR -->
+<div class="hotspot" style="top:75%; left:45%;" onclick="show(event,'Main Landing Gear','Supports aircraft weight')"></div>
 
-<div class="hotspot" style="top:52%;left:55%;" onclick="show(event,'Flaps','Increase lift during takeoff and landing')"></div>
+<!-- NOSE GEAR -->
+<div class="hotspot" style="top:75%; left:18%;" onclick="show(event,'Nose Landing Gear','Front wheel system')"></div>
 
-<div class="hotspot" style="top:47%;left:55%;" onclick="show(event,'Ailerons','Control roll movement')"></div>
+<!-- WING FLAPS -->
+<div class="hotspot" style="top:53%; left:60%;" onclick="show(event,'Flaps','Increase lift during landing')"></div>
 
-<div class="hotspot" style="top:45%;left:60%;" onclick="show(event,'Slats','Improve lift at low speeds')"></div>
+<!-- AILERONS -->
+<div class="hotspot" style="top:48%; left:63%;" onclick="show(event,'Ailerons','Control roll')"></div>
 
-<div class="hotspot" style="top:43%;left:70%;" onclick="show(event,'Winglet','Reduces drag and improves efficiency')"></div>
+<!-- SLATS -->
+<div class="hotspot" style="top:47%; left:58%;" onclick="show(event,'Slats','Improve lift at low speed')"></div>
 
-<div class="hotspot" style="top:75%;left:55%;" onclick="show(event,'Landing Gear','Supports aircraft during landing and taxi')"></div>
+<!-- SPOILERS -->
+<div class="hotspot" style="top:45%; left:60%;" onclick="show(event,'Spoilers','Reduce lift')"></div>
 
-<div class="hotspot" style="top:78%;left:75%;" onclick="show(event,'Nose Landing Gear','Front landing gear for steering')"></div>
+<!-- TAIL -->
+<div class="hotspot" style="top:50%; left:85%;" onclick="show(event,'Tail','Stability system')"></div>
 
-<!-- INFO BOX -->
+<!-- VERTICAL STAB -->
+<div class="hotspot" style="top:35%; left:90%;" onclick="show(event,'Vertical Stabilizer','Yaw control')"></div>
+
+<!-- HORIZONTAL STAB -->
+<div class="hotspot" style="top:50%; left:90%;" onclick="show(event,'Horizontal Stabilizer','Pitch stability')"></div>
+
+<!-- RUDDER -->
+<div class="hotspot" style="top:40%; left:92%;" onclick="show(event,'Rudder','Yaw control surface')"></div>
+
+<!-- ELEVATOR -->
+<div class="hotspot" style="top:52%; left:92%;" onclick="show(event,'Elevator','Pitch control surface')"></div>
+
 <div id="info" class="info"></div>
 
 </div>
@@ -145,16 +158,7 @@ box.style.display="block";
 box.style.left=e.pageX+"px";
 box.style.top=e.pageY+"px";
 
-box.innerHTML =
-"<b>" + title + "</b><br>" + desc +
-"<br><button onclick='speak(\""+title+"\")'>🔊</button>";
-}
-
-function speak(text){
-let msg=new SpeechSynthesisUtterance(text);
-msg.lang="en-US";
-msg.rate=0.9;
-speechSynthesis.speak(msg);
+box.innerHTML="<b>"+title+"</b><br>"+desc;
 }
 
 document.addEventListener("click",function(e){
