@@ -10,26 +10,28 @@ margin:0;
 font-family:Arial;
 background:#0a0f1c;
 color:white;
-}
-
-header{
 text-align:center;
-padding:15px;
 }
 
-h1{color:#00d4ff;}
+h1{
+color:#00d4ff;
+padding:20px;
+}
 
+/* CONTAINER */
 .container{
 position:relative;
-max-width:900px;
+max-width:1000px;
 margin:auto;
 }
 
-.aircraft{
+/* IMAGE */
+.container img{
 width:100%;
 border-radius:10px;
 }
 
+/* HOTSPOTS */
 .hotspot{
 position:absolute;
 width:14px;
@@ -47,17 +49,29 @@ animation:pulse 1.5s infinite;
 100%{transform:scale(1);}
 }
 
+/* INFO BOX */
 .info{
 position:absolute;
-background:rgba(0,0,0,0.8);
+background:rgba(0,0,0,0.9);
 padding:10px;
 border-radius:8px;
 display:none;
-max-width:200px;
-font-size:13px;
+max-width:260px;
 border:1px solid #00d4ff;
+font-size:13px;
 }
 
+/* BUTTON */
+button{
+margin:10px;
+padding:10px 15px;
+border:none;
+background:#00d4ff;
+cursor:pointer;
+border-radius:6px;
+}
+
+/* WATERMARK */
 .watermark{
 position:fixed;
 top:50%;
@@ -74,63 +88,66 @@ pointer-events:none;
 
 <div class="watermark">Mr. Fawzi Milibari</div>
 
-<header>
-<h1>Interactive Aircraft Anatomy Map</h1>
-<p>Click on the aircraft parts</p>
-</header>
+<h1>✈️ Aircraft Interactive Diagram</h1>
 
 <div class="container">
 
-<!-- Aircraft Image -->
-<img src="https://i.imgur.com/8QfKQ9M.png" class="aircraft">
+<!-- AIRCRAFT IMAGE -->
+<img src="aircraft.png">
 
 <!-- HOTSPOTS -->
 
-<div class="hotspot" style="top:45%;left:50%;" 
-onclick="showInfo(event,'Fuselage','Main body of aircraft')"></div>
+<div class="hotspot" style="top:45%;left:78%;" onclick="show(event,'Cockpit','Pilot control area of the aircraft')"></div>
 
-<div class="hotspot" style="top:25%;left:30%;" 
-onclick="showInfo(event,'Wing','Generates lift')"></div>
+<div class="hotspot" style="top:55%;left:65%;" onclick="show(event,'Fuselage','Main body of the aircraft')"></div>
 
-<div class="hotspot" style="top:25%;left:70%;" 
-onclick="showInfo(event,'Wing','Generates lift')"></div>
+<div class="hotspot" style="top:50%;left:50%;" onclick="show(event,'Wing','Generates lift to keep the aircraft flying')"></div>
 
-<div class="hotspot" style="top:15%;left:50%;" 
-onclick="showInfo(event,'Cockpit','Pilot control area')"></div>
+<div class="hotspot" style="top:60%;left:48%;" onclick="show(event,'Engine','Provides thrust for aircraft movement')"></div>
 
-<div class="hotspot" style="top:60%;left:50%;" 
-onclick="showInfo(event,'Landing Gear','Supports landing & ground movement')"></div>
+<div class="hotspot" style="top:45%;left:20%;" onclick="show(event,'Tail','Provides stability and control')"></div>
 
-<div class="hotspot" style="top:40%;left:80%;" 
-onclick="showInfo(event,'Engine','Provides thrust for flight')"></div>
+<div class="hotspot" style="top:40%;left:25%;" onclick="show(event,'Vertical Stabilizer','Controls yaw movement')"></div>
 
-<div class="hotspot" style="top:40%;left:20%;" 
-onclick="showInfo(event,'Engine','Provides thrust for flight')"></div>
+<div class="hotspot" style="top:50%;left:25%;" onclick="show(event,'Horizontal Stabilizer','Controls pitch stability')"></div>
 
-<div class="hotspot" style="top:10%;left:50%;" 
-onclick="showInfo(event,'Vertical Stabilizer','Yaw stability control')"></div>
+<div class="hotspot" style="top:52%;left:35%;" onclick="show(event,'Elevator','Controls aircraft pitch')"></div>
+
+<div class="hotspot" style="top:48%;left:35%;" onclick="show(event,'Rudder','Controls yaw direction')"></div>
+
+<div class="hotspot" style="top:52%;left:55%;" onclick="show(event,'Flaps','Increase lift during takeoff and landing')"></div>
+
+<div class="hotspot" style="top:47%;left:55%;" onclick="show(event,'Ailerons','Control roll movement')"></div>
+
+<div class="hotspot" style="top:45%;left:60%;" onclick="show(event,'Slats','Improve lift at low speeds')"></div>
+
+<div class="hotspot" style="top:43%;left:70%;" onclick="show(event,'Winglet','Reduces drag and improves efficiency')"></div>
+
+<div class="hotspot" style="top:75%;left:55%;" onclick="show(event,'Landing Gear','Supports aircraft during landing and taxi')"></div>
+
+<div class="hotspot" style="top:78%;left:75%;" onclick="show(event,'Nose Landing Gear','Front landing gear for steering')"></div>
 
 <!-- INFO BOX -->
 <div id="info" class="info"></div>
 
 </div>
 
-<footer style="text-align:center;padding:20px;opacity:0.7;">
-Prepared by Mr. Fawzi Milibari
-</footer>
+<br>
+
+<button onclick="location.href='training.html'">⬅ Back</button>
 
 <script>
 
-function showInfo(e,title,desc){
+function show(e,title,desc){
 let box=document.getElementById("info");
 
 box.style.display="block";
 box.style.left=e.pageX+"px";
 box.style.top=e.pageY+"px";
 
-box.innerHTML=
-"<b>"+title+"</b><br>"+desc+
-"<br><button onclick='speak(\""+title+"\")'>🔊 Listen</button>";
+box.innerHTML =
+"<b>" + title + "</b><br>" + desc +
+"<br><button onclick='speak(\""+title+"\")'>🔊</button>";
 }
 
 function speak(text){
